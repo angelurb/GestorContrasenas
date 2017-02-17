@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+        <title>RELOJ by Angel</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script>
+            angular.module("RelojApp", []).controller("RelojController", function() {
+                this.hours = 0;
+                this.minutes = 0;
+                this.seconds = 0;
+            });
+            console.log('Hola!');
+        </script>
+    </head>
+
+    <body>
+        <div ng-app="RelojApp" ng-controller="RelojController as RCtrl">
+            <span>{{RCtrl.hours}}:{{RCtrl.minutes}}:{{RCtrl.seconds}}</span>
+        </div>
+    </body>
+
+</html>

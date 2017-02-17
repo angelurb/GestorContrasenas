@@ -1,0 +1,1 @@
+var RelojApp = angular.app()
