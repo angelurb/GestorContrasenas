@@ -1,0 +1,24 @@
+div {
+    position: fixed;
+    font-family: Georgia;
+}
+
+.clock {
+    font-size: 200%;
+    padding: 10px 20px;
+    border: 2px solid #7DCFB6;
+    border-radius: 50px;
+}
+
+button {
+    background-color: #339989;
+    text-shadow: 0.3px 0.3px;
+    border: 2px solid #7DCFB6;
+    border-radius: 25px;
+}
+
+button:hover {
+    background-color: #7DCFB6;
+    text-shadow: 0px 0px;
+    border: 2px solid #339989;
+}
