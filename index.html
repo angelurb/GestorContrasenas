@@ -2,89 +2,79 @@
 
     <head>
         <title>RELOJ by Angel</title>
-        <style>
-            div {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                margin: -100px 0 0 -150px;
-                font-family: Georgia;
-            }
-            
-            .clock {
-                font-size: 200%;
-                padding: 10px 20px;
-                border: 2px solid #7DCFB6;
-                border-radius: 50px;
-            }
-            
-            button {
-                background-color: #339989;
-                text-shadow: 0.3px 0.3px;
-                border: 2px solid #7DCFB6;
-                border-radius: 25px;
-            }
-            
-            button:hover {
-                background-color: #7DCFB6;
-                text-shadow: 0px 0px;
-                border: 2px solid #339989;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="reloj.css">
     </head>
 
     <body>
         <div ng-app="RelojApp" ng-controller="RelojController as RCtrl">
-            <span class="clock">{{RCtrl.hours}}:{{RCtrl.minutes}}:{{RCtrl.seconds}}</span>
-            <span ng-show="!RCtrl.format24">{{RCtrl.format}}</span>
-            <button ng-click="RCtrl.changeFormat()"> Change Format({{RCtrl.showFormat}}) </button></div>
+            <div class="clock">
+                <span ng-if="RCtrl.lessThanTen(RCtrl.hours)">0</span>{{RCtrl.hours}}:
+                <span ng-if="RCtrl.lessThanTen(RCtrl.minutes)">0</span>{{RCtrl.minutes}}:
+                <span ng-if="RCtrl.lessThanTen(RCtrl.seconds)">0</span>{{RCtrl.seconds}}
+                <span ng-if="!RCtrl.format24">
+                    <span ng-if="isNoon">PM</span>
+                <span ng-if="!isNoon">AM</span>
+                </span>
+                <button ng-click="RCtrl.clickFormat()"> 
+                Format
+                <span ng-if="!RCtrl.format24">(24h)</span>
+                <span ng-if="RCtrl.format24">(12h)</span>
+            </button>
+            </div>
+
+        </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script>
         angular.module("RelojApp", []).controller("RelojController", ['$interval', function($interval) {
-            var date = new Date();
-            this.hours = date.getHours();
-            this.minutes = date.getMinutes();
-            this.seconds = date.getSeconds();
-            this.format24 = false;
-            this.showFormat = "24h"
-            var h = this.hours,
-                m = this.minutes,
-                s = this.seconds;
-            (h > 12 && this.format24 == false) ? (this.format = "PM", h = h - 12) : (this.format = "AM");
-            $interval(() => {
-                if (s < 59) {
-                    s++;
-                } else {
-                    if (m < 59) {
-                        m++;
-                    } else {
-                        if (h < 24) {
-                            if (this.format24 == true) {
-                                h++;
-                            } else if (this.format24 == false) {
-                                if (this.format === "PM") {
-                                    h = 0;
-                                } else {
-                                    h++;
-                                }
-                            }
-                        } else {
-                            h = 0;
-                            m = 0;
-                            s = 0;
-                        }
-                        m = 0;
-                    }
-                    s = 0;
-                }
 
-                (h < 10) ? (this.hours = "0" + h) : this.hours = h;
-                (m < 10) ? (this.minutes = "0" + m) : this.minutes = m;
-                (s < 10) ? (this.seconds = "0" + s) : this.seconds = s;
+
+            this.init = () => {
+                let date = new Date();
+                this.hours = date.getHours();
+                this.minutes = date.getMinutes();
+                this.seconds = date.getSeconds();
+                this.format24 = true;
+                this.hours > 12 ? this.isNoon = true : this.isNoon = false;
+            };
+            this.init();
+
+            $interval(() => {
+                this.actualizarHora();
+                console.log(this.format24);
             }, 1000);
-            this.changeFormat = function() {
-                (this.format24 == true) ? (this.format24 = false, this.showFormat = "24h") : (this.format24 = true, this.showFormat = "12h");
+
+            this.actualizarHora = () => {
+                this.checkChangeMorS(this.seconds) ? (this.seconds = 0, this.minutes++) : this.seconds++;
+                this.checkChangeMorS(this.minutes) ? (this.minutes = 0, this.hours++) : "";
+                this.checkChangeH(this.hours) ? (this.hours = 0) : "";
+            };
+            this.checkChangeMorS = (MorS) => {
+                if (MorS >= 59) {
+                    return true;
+                } else return false;
+            };
+            this.checkChangeH = (H) => {
+                if (H >= 24) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            this.lessThanTen = (x) => {
+                if (x < 10) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            this.clickFormat = () => {
+                if (this.format24 == false && this.isNoon) {
+                    this.hours += 12;
+                } else if (this.format24 && this.hours > 12) {
+                    this.hours -= 12;
+                }
+                this.format24 = !this.format24;
             };
         }]);
     </script>
