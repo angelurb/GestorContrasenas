@@ -1,5 +1,4 @@
 div {
-    position: fixed;
     font-family: Georgia;
 }
 
@@ -8,6 +7,11 @@ div {
     padding: 10px 20px;
     border: 2px solid #7DCFB6;
     border-radius: 50px;
+    float: left;
+}
+
+.clock .box {
+    float: left;
 }
 
 button {

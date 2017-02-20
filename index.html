@@ -8,73 +8,83 @@
     <body>
         <div ng-app="RelojApp" ng-controller="RelojController as RCtrl">
             <div class="clock">
-                <span ng-if="RCtrl.lessThanTen(RCtrl.hours)">0</span>{{RCtrl.hours}}:
-                <span ng-if="RCtrl.lessThanTen(RCtrl.minutes)">0</span>{{RCtrl.minutes}}:
-                <span ng-if="RCtrl.lessThanTen(RCtrl.seconds)">0</span>{{RCtrl.seconds}}
-                <span ng-if="!RCtrl.format24">
-                    <span ng-if="isNoon">PM</span>
-                <span ng-if="!isNoon">AM</span>
-                </span>
-                <button ng-click="RCtrl.clickFormat()"> 
-                Format
-                <span ng-if="!RCtrl.format24">(24h)</span>
-                <span ng-if="RCtrl.format24">(12h)</span>
-            </button>
+                <div class="box">
+                    <div class="box" ng-if="RCtrl.hours < 10">0</div> {{ RCtrl.hours }}
+                </div>
+                <div class="box">:</div>
+                <div class="box">
+                    <div class="box" ng-if="RCtrl.minutes < 10">0</div> {{ RCtrl.minutes }}
+                </div>
+                <div class="box">:</div>
+                <div class="box">
+                    <div class="box" ng-if="RCtrl.seconds < 10">0</div> {{ RCtrl.seconds }}
+                </div>
+                <div class="box" ng-if="RCtrl.format12">
+                    <div class="box" ng-if="RCtrl.isNoon">PM</div>
+                    <div class="box" ng-if="!RCtrl.isNoon">AM</div>
+                </div>
             </div>
-
+            <div class="box">
+                <button ng-click="RCtrl.clickFormat()"> 
+                    Format
+                    <div class="box" ng-if="RCtrl.format12">(24h)</div>
+                    <div class="box" ng-if="!RCtrl.format12">(12h)</div>
+                </button>
+            </div>
         </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script>
         angular.module("RelojApp", []).controller("RelojController", ['$interval', function($interval) {
+            var ctrl = this;
+            init();
 
-
-            this.init = () => {
+            //Funciones Privadas
+            function init() {
                 let date = new Date();
-                this.hours = date.getHours();
-                this.minutes = date.getMinutes();
-                this.seconds = date.getSeconds();
-                this.format24 = true;
-                this.hours > 12 ? this.isNoon = true : this.isNoon = false;
+                ctrl.hours = 23;
+                ctrl.minutes = 59;
+                ctrl.seconds = 57;
+                ctrl.secNum = 59;
+                ctrl.hourNum = 24;
+                ctrl.noonHours = 12;
+                ctrl.format12 = false;
+                ctrl.hours > ctrl.noonHours ? ctrl.isNoon = true : ctrl.isNoon = false;
+
             };
-            this.init();
+
 
             $interval(() => {
-                this.actualizarHora();
-                console.log(this.format24);
+                actualizarHora();
+                console.log(ctrl.isNoon);
             }, 1000);
 
-            this.actualizarHora = () => {
-                this.checkChangeMorS(this.seconds) ? (this.seconds = 0, this.minutes++) : this.seconds++;
-                this.checkChangeMorS(this.minutes) ? (this.minutes = 0, this.hours++) : "";
-                this.checkChangeH(this.hours) ? (this.hours = 0) : "";
-            };
-            this.checkChangeMorS = (MorS) => {
-                if (MorS >= 59) {
-                    return true;
-                } else return false;
-            };
-            this.checkChangeH = (H) => {
-                if (H >= 24) {
-                    return true;
-                } else {
-                    return false;
+            function actualizarHora() {
+                if (ctrl.seconds >= ctrl.secNum) {
+                    ctrl.seconds = 0;
+                    ctrl.minutes++;
+                    checkChange(ctrl.minutes, ctrl.secNum) ? (ctrl.minutes = 0, ctrl.hours++) : '';
+                    checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0) : '';
                 }
+                ctrl.seconds++;
             };
-            this.lessThanTen = (x) => {
-                if (x < 10) {
+
+            function checkChange(M, num) {
+                if (M >= num) {
                     return true;
                 } else {
                     return false;
                 }
             };
-            this.clickFormat = () => {
-                if (this.format24 == false && this.isNoon) {
-                    this.hours += 12;
-                } else if (this.format24 && this.hours > 12) {
-                    this.hours -= 12;
+
+            //Funciones públicas
+            ctrl.clickFormat = () => {
+                if (ctrl.format12 == false && ctrl.hours > ctrl.noonHours) {
+                    ctrl.hours -= ctrl.noonHours;
+                } else if (ctrl.format12 && ctrl.isNoon) {
+                    ctrl.hours += ctrl.noonHours;
                 }
-                this.format24 = !this.format24;
+                ctrl.format12 = !ctrl.format12;
             };
         }]);
     </script>
