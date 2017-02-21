@@ -2,7 +2,8 @@
 
     <head>
         <title>RELOJ by Angel</title>
-        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Play|Source+Sans+Pro" rel="stylesheet">
+        <script src="https://use.fontawesome.com/f4e7614a5b.js"></script>
         <link rel="stylesheet" type="text/css" href="reloj.css">
     </head>
 
@@ -10,6 +11,12 @@
         <div ng-app="RelojApp" ng-controller="RelojController as ctrl">
             <div class="clock-exteriorbox">
                 <div class="clock-interiorbox">
+                    <div class="clock-weekdaysbox">
+                        <div class="clock-weekdays" ng-repeat="day in ctrl.daysArray" ng-class="{'highlight': $index === ctrl.weekday-1}">
+                            {{day }}
+                        </div>
+                    </div>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <div class="clock-hoursbox">
                         <div class="clock-time" ng-if="ctrl.hours < 10">0</div>
                         <div class="clock-time">{{ ctrl.hours }}</div>
@@ -20,15 +27,9 @@
                         <div class="clock-time" ng-if="ctrl.seconds < 10">0</div>
                         <div class="clock-time">{{ ctrl.seconds }} </div>
                     </div>
-                    <div class="clock-format clock-time" ng-if="ctrl.format12">
+                    <div class="clock-format" ng-if="ctrl.format12">
                         <div ng-class="{'highlight': !ctrl.isNoon}">AM</div>
                         <div ng-class="{'highlight': ctrl.isNoon}">PM</div>
-                    </div>
-                    <div class="clock-imageclock clock-time"></div>
-                    <div class="clock-weekdaysbox">
-                        <div class="clock-weekdays" ng-repeat="day in ctrl.daysArray" ng-class="{'highlight': $index === ctrl.weekday-1}">
-                            {{day }}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@
 
             //Fecha actual
             function getActualDate() {
-                ctrl.daysArray = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                ctrl.daysArray = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
                 let date = new Date();
                 ctrl.hours = date.getHours();
                 ctrl.minutes = date.getMinutes();
