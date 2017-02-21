@@ -38,37 +38,40 @@
         angular.module("RelojApp", []).controller("RelojController", ['$interval', function($interval) {
             var ctrl = this;
             init();
-
-            //Funciones Privadas
-            function init() {
-                let date = new Date();
-                ctrl.hours = 23;
-                ctrl.minutes = 59;
-                ctrl.seconds = 57;
-                ctrl.secNum = 59;
-                ctrl.hourNum = 24;
-                ctrl.noonHours = 12;
-                ctrl.format12 = false;
-                ctrl.hours > ctrl.noonHours ? ctrl.isNoon = true : ctrl.isNoon = false;
-
-            };
-
-
             $interval(() => {
                 actualizarHora();
-                console.log(ctrl.isNoon);
             }, 1000);
 
+            //Funciones Privadas
+            //Iniciación de todas las variables
+            function init() {
+                let date = new Date();
+                ctrl.hours = 11;
+                ctrl.minutes = 59;
+                ctrl.seconds = 57;
+                /* ctrl.hours = date.getHours();
+                 ctrl.minutes = date.getMinutes();
+                 ctrl.seconds = date.getSeconds();*/
+                ctrl.secNum = 59;
+                ctrl.hourNum = 24;
+                ctrl.format12 = false;
+                ctrl.format12 ? ctrl.noonHours = 12 : ctrl.noonHours = 24;
+                ctrl.hours >= 12 ? ctrl.isNoon = true : ctrl.isNoon = false;
+            };
+
+            //Actualiza la hora del Reloj cada vez que se llama
             function actualizarHora() {
                 if (ctrl.seconds >= ctrl.secNum) {
                     ctrl.seconds = 0;
                     ctrl.minutes++;
                     checkChange(ctrl.minutes, ctrl.secNum) ? (ctrl.minutes = 0, ctrl.hours++) : '';
-                    checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0) : '';
+                    ctrl.hours >= 12 ? ctrl.isNoon = true : ctrl.isNoon = false;
+                    checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0, ctrl.isNoon = false) : '';
                 }
                 ctrl.seconds++;
             };
 
+            //Comprobación de cambio (Ej: Si han passado 60 segundos, devuelve true para incrementar los minutos)
             function checkChange(M, num) {
                 if (M >= num) {
                     return true;
@@ -81,7 +84,7 @@
             ctrl.clickFormat = () => {
                 if (ctrl.format12 == false && ctrl.hours > ctrl.noonHours) {
                     ctrl.hours -= ctrl.noonHours;
-                } else if (ctrl.format12 && ctrl.isNoon) {
+                } else if (ctrl.format12 && ctrl.isNoon && ctrl.hours < 12) {
                     ctrl.hours += ctrl.noonHours;
                 }
                 ctrl.format12 = !ctrl.format12;
