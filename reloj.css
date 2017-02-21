@@ -1,28 +1,67 @@
-div {
-    font-family: Georgia;
+.clock-exteriorbox {
+    background-color: grey;
+    padding: 2%;
+    width: 200px;
+    height: 50px;
+    font-size: 20%;
 }
 
-.clock {
-    font-size: 200%;
-    padding: 10px 20px;
-    border: 2px solid #7DCFB6;
-    border-radius: 50px;
+.clock-interiorbox {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    border-radius: 3%;
+    background-color: whitesmoke;
+}
+
+.clock-imageclock.clock-time {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    content: url(https://cdn4.iconfinder.com/data/icons/devine_icons/Black/PNG/System%20and%20Internet/Times%20and%20Dates.png);
+    bottom: 5%;
+    left: 5%;
+}
+
+.clock-time {
     float: left;
+    bottom: 0;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    color: black;
 }
 
-.clock .box {
+.clock-hoursbox {
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    font-size: 4em;
+    font-family: 'Press Start 2P';
+}
+
+.clock-format.clock-time {
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+    font-size: 3em;
+    color: lightgrey;
+}
+
+.clock-weekdays {
     float: left;
+    padding: 1%;
+    font-size: 4.5em;
+    color: lightgrey;
 }
 
-button {
-    background-color: #339989;
-    text-shadow: 0.3px 0.3px;
-    border: 2px solid #7DCFB6;
-    border-radius: 25px;
+.clock-weekdaysbox {
+    position: absolute;
+    width: 100%;
+    padding: 2%;
+    top: 0;
+    color: lightgrey;
 }
 
-button:hover {
-    background-color: #7DCFB6;
-    text-shadow: 0px 0px;
-    border: 2px solid #339989;
+.highlight {
+    color: black;
 }
