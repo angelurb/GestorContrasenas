@@ -1,0 +1,57 @@
+.clock-exteriorbox {
+    background-color: #262d36;
+    padding: 30px;
+    width: 200px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.clock-interiorbox {
+    border-radius: 5px;
+    background-color: #0f161f;
+    overflow: hidden;
+}
+
+.clock-weekdaysbox {
+    padding-left: 8.5px;
+    padding-top: 3px;
+}
+
+.clock-weekdays {
+    padding: 5px;
+    padding-bottom: 0px;
+    float: left;
+    color: #262d36;
+    font-size: 9.5px;
+}
+
+.fa-clock-o {
+    font-size: 15px;
+    float: left;
+    color: #c9c9c9;
+    padding-left: 12px;
+    padding-top: 18px;
+    padding-right: 3px;
+}
+
+.clock-hoursbox {
+    font-family: 'Play', sans-serif;
+    font-size: 35px;
+}
+
+.clock-time {
+    float: left;
+    padding-bottom: 4px;
+    color: #c9c9c9;
+}
+
+.clock-format {
+    font-size: 8px;
+    float: left;
+    padding-top: 14.5px;
+    padding-left: 4px;
+    color: #262d36;
+}
+
+.highlight {
+    color: #c9c9c9;
+}

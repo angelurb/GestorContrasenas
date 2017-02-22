@@ -1,0 +1,67 @@
+$color-black: #0f161f;
+$color-grey: #262d36;
+$color-white: #c9c9c9;
+$total-box-size :300px;
+.clock-weekdays,
+.clock-format {
+    color: $color-grey;
+}
+
+.highlight,
+.fa-clock-o,
+.clock-time {
+    color: $color-white;
+}
+
+.clock-weekdays,
+.fa-clock-o,
+.clock-time,
+.clock-format {
+    float: left;
+}
+
+.clock-exteriorbox {
+    background-color: $color-grey;
+    padding: (30px/200px*$total-box-size);
+    width: $total-box-size;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.clock-interiorbox {
+    border-radius: (5px/200px*$total-box-size);
+    background-color: $color-black;
+    overflow: hidden;
+}
+
+.clock-weekdaysbox {
+    padding-left: (8.5px/200px*$total-box-size);
+    padding-top: (3px/200px*$total-box-size);
+}
+
+.clock-weekdays {
+    padding: (5px/200px*$total-box-size);
+    padding-bottom: 0px;
+    font-size: (9.5px/200px*$total-box-size);
+}
+
+.fa-clock-o {
+    font-size: (15px/200px*$total-box-size);
+    padding-left: (12px/200px*$total-box-size);
+    padding-top: (18px/200px*$total-box-size);
+    padding-right: (3px/200px*$total-box-size);
+}
+
+.clock-hoursbox {
+    font-family: 'Play', sans-serif;
+    font-size: (35px/200px*$total-box-size);
+}
+
+.clock-time {
+    padding-bottom: (4px/200px*$total-box-size);
+}
+
+.clock-format {
+    font-size: (8px/200px*$total-box-size);
+    padding-top: (14.5px/200px*$total-box-size);
+    padding-left: (4px/200px*$total-box-size);
+}
