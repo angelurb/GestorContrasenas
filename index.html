@@ -44,7 +44,7 @@
             function init() {
                 getActualDate();
                 noonCheck();
-                intervalTime(1000);
+                intervalTime(1);
             };
             init();
 
@@ -54,8 +54,8 @@
             function getActualDate() {
                 ctrl.daysArray = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
                 let date = new Date();
-                ctrl.hours = date.getHours();
-                ctrl.minutes = date.getMinutes();
+                ctrl.hours = 13;
+                ctrl.minutes = 50;
                 ctrl.seconds = date.getSeconds();
                 ctrl.weekday = date.getDay();
             };
@@ -64,7 +64,7 @@
             function noonCheck() {
                 ctrl.format12 = true;
                 ctrl.format12 ? ctrl.noonHours = 12 : ctrl.noonHours = 24;
-                ctrl.hours >= 12 ? ctrl.isNoon = true : ctrl.isNoon = false;
+                ctrl.hours >= ctrl.noonHours ? (ctrl.isNoon = true, ctrl.hours = ctrl.hours - ctrl.noonHours) : ctrl.isNoon = false;
             };
 
             //Interval  
@@ -81,9 +81,8 @@
                     ctrl.minutes++;
                     if (ctrl.minutes >= secNum) {
                         checkChange(ctrl.minutes, secNum) ? (ctrl.minutes = 0, ctrl.hours++) : '';
-                        ctrl.hours >= 12 ? ctrl.isNoon = true : ctrl.isNoon = false;
                         checkChangeWeekday();
-                        checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0, ctrl.isNoon = false) : '';
+                        checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0, ctrl.isNoon = !ctrl.isNoon) : '';
                     }
                 }
                 ctrl.seconds++;
