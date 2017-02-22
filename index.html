@@ -40,11 +40,12 @@
         angular.module("RelojApp", []).controller("RelojController", ['$interval', function($interval) {
             var ctrl = this;
             secNum = 59;
+            intervalMs = 1000;
             //Iniciación de todas las variables
             function init() {
                 getActualDate();
                 noonCheck();
-                intervalTime(1);
+                intervalTime(intervalMs);
             };
             init();
 
@@ -54,8 +55,8 @@
             function getActualDate() {
                 ctrl.daysArray = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
                 let date = new Date();
-                ctrl.hours = 13;
-                ctrl.minutes = 50;
+                ctrl.hours = date.getHours();
+                ctrl.minutes = date.getMinutes();
                 ctrl.seconds = date.getSeconds();
                 ctrl.weekday = date.getDay();
             };
