@@ -17,7 +17,7 @@
   background-color: #262d36;
   padding: 45px;
   width: 300px;
-  font-family: 'Source Sans Pro', sans-serif; }
+  font-family: "Source Sans Pro", sans-serif; }
 
 .clock-interiorbox {
   border-radius: 7.5px;
@@ -40,7 +40,7 @@
   padding-right: 4.5px; }
 
 .clock-hoursbox {
-  font-family: 'Play', sans-serif;
+  font-family: "Play", sans-serif;
   font-size: 52.5px; }
 
 .clock-time {
@@ -50,5 +50,3 @@
   font-size: 12px;
   padding-top: 21.75px;
   padding-left: 6px; }
-
-/*# sourceMappingURL=output.css.map */

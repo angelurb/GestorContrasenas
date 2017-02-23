@@ -1,7 +1,4 @@
-$color-black: #0f161f;
-$color-grey: #262d36;
-$color-white: #c9c9c9;
-$total-box-size :300px;
+@import "./modules/variablesClock";
 .clock-weekdays,
 .clock-format {
     color: $color-grey;
@@ -24,7 +21,7 @@ $total-box-size :300px;
     background-color: $color-grey;
     padding: (30px/200px*$total-box-size);
     width: $total-box-size;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: $font-family-exteriorbox;
 }
 
 .clock-interiorbox {
@@ -52,7 +49,7 @@ $total-box-size :300px;
 }
 
 .clock-hoursbox {
-    font-family: 'Play', sans-serif;
+    font-family: $font-family-hoursbox;
     font-size: (35px/200px*$total-box-size);
 }
 

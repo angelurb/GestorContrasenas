@@ -1,0 +1,18 @@
+div(ng-app='RelojApp', ng-controller='RelojController')
+    .clock-exteriorbox
+        .clock-interiorbox
+            .clock-weekdaysbox
+                .clock-weekdays(ng-repeat='day in $ctrl.daysArray', ng-class="{'highlight': $index === $ctrl.weekday-1}") {{day}}
+            i.fa.fa-clock-o(aria-hidden='true')
+            .clock-hoursbox
+                .clock-time(ng-if='$ctrl.hours < 10') 0
+                .clock-time {{ $ctrl.hours }}
+                .clock-time :
+                .clock-time(ng-if='$ctrl.minutes < 10') 0
+                .clock-time {{ $ctrl.minutes }}
+                .clock-time :
+                .clock-time(ng-if='$ctrl.seconds < 10') 0
+                .clock-time {{ $ctrl.seconds }} 
+            .clock-format(ng-if='$ctrl.format12')
+                div(ng-class="{'highlight': !$ctrl.isNoon}") AM
+                div(ng-class="{'highlight': $ctrl.isNoon}") PM
