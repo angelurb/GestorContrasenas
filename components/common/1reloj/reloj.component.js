@@ -1,4 +1,3 @@
-angular.module('app', ['relojcomponent']);
  angular.module("relojcomponent", [])
      .component('relojcomponent', {
          templateUrl: './reloj.html',
