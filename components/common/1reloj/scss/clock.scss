@@ -1,4 +1,3 @@
-@import "variablesClock";
 .clock-weekdays,
 .clock-format {
     color: $color-grey;
@@ -22,12 +21,19 @@
     padding: (30px/200px*$total-box-size);
     width: $total-box-size;
     font-family: $font-family-exteriorbox;
+    border-radius: (5px/200px*$total-box-size);
+    opacity: 0.9;
+}
+
+.clock-exteriorbox:hover {
+    opacity: 1;
 }
 
 .clock-interiorbox {
     border-radius: (5px/200px*$total-box-size);
     background-color: $color-black;
     overflow: hidden;
+    opacity: 1;
 }
 
 .clock-weekdaysbox {

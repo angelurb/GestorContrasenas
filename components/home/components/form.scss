@@ -1,0 +1,61 @@
+.login-title {
+    font-size: 300%;
+    margin-top: 15px;
+    font-family: $font-family-form;
+}
+
+.form-name {
+    float: left;
+    margin-left: 24%;
+    margin-bottom: 3%;
+}
+
+.form-password {
+    float: left;
+    margin-left: 24%;
+    margin-bottom: 2%;
+}
+
+.form-button {
+    float: right;
+    width: 60px;
+    margin-right: 23.5%;
+    background-color: #027569;
+    border: none;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #01564d;
+}
+
+.form-error {
+    float: left;
+    margin-left: 60px;
+    margin-top: 30px;
+    color: red;
+}
+
+.form-button,
+.form-name,
+.form-password {
+    padding: 6px;
+    border-radius: (5px/200px*$total-box-size);
+}
+
+.form-name:focus,
+.form-password:focus,
+.form-button:focus {
+    outline: none;
+}
+
+.form-name:hover,
+.form-password:hover,
+.form-button:hover {
+    background-color: $color-white;
+}
+
+.form-name::-webkit-input-placeholder,
+.form-password::-webkit-input-placeholder {
+    font-family: $font-family-form;
+}

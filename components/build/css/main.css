@@ -1,11 +1,11 @@
 .clock-weekdays,
 .clock-format {
-  color: #262d36; }
+  color: #424242; }
 
 .highlight,
 .fa-clock-o,
 .clock-time {
-  color: #c9c9c9; }
+  color: #ededed; }
 
 .clock-weekdays,
 .fa-clock-o,
@@ -14,15 +14,21 @@
   float: left; }
 
 .clock-exteriorbox {
-  background-color: #262d36;
+  background-color: #424242;
   padding: 30px;
   width: 200px;
-  font-family: "Source Sans Pro", sans-serif; }
+  font-family: "Source Sans Pro", sans-serif;
+  border-radius: 5px;
+  opacity: 0.9; }
+
+.clock-exteriorbox:hover {
+  opacity: 1; }
 
 .clock-interiorbox {
   border-radius: 5px;
-  background-color: #0f161f;
-  overflow: hidden; }
+  background-color: #000000;
+  overflow: hidden;
+  opacity: 1; }
 
 .clock-weekdaysbox {
   padding-left: 8.5px;
@@ -50,3 +56,91 @@
   font-size: 8px;
   padding-top: 14.5px;
   padding-left: 4px; }
+
+.login-title {
+  font-size: 300%;
+  margin-top: 15px;
+  font-family: Helvetica, Sans-Serif; }
+
+.form-name {
+  float: left;
+  margin-left: 24%;
+  margin-bottom: 3%; }
+
+.form-password {
+  float: left;
+  margin-left: 24%;
+  margin-bottom: 2%; }
+
+.form-button {
+  float: right;
+  width: 60px;
+  margin-right: 23.5%;
+  background-color: #027569;
+  border: none;
+  cursor: pointer; }
+
+.form-button:hover {
+  background-color: #01564d; }
+
+.form-error {
+  float: left;
+  margin-left: 60px;
+  margin-top: 30px;
+  color: red; }
+
+.form-button,
+.form-name,
+.form-password {
+  padding: 6px;
+  border-radius: 5px; }
+
+.form-name:focus,
+.form-password:focus,
+.form-button:focus {
+  outline: none; }
+
+.form-name:hover,
+.form-password:hover,
+.form-button:hover {
+  background-color: #ededed; }
+
+.form-name::-webkit-input-placeholder,
+.form-password::-webkit-input-placeholder {
+  font-family: Helvetica, Sans-Serif; }
+
+.index-page {
+  position: relative;
+  background-image: url(fondoGestor.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.form-exteriorbox {
+  position: absolute;
+  font-family: Helvetica, Sans-Serif;
+  background-color: #424242;
+  width: 340px;
+  opacity: 0.9;
+  border-radius: 30px;
+  text-align: center;
+  height: 290px;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.form-loginbox {
+  padding-top: 10%;
+  text-align: center; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: 'cursive';
+  color: #8f8f8f; }
+
+.clock-component {
+  position: absolute;
+  bottom: 0px; }

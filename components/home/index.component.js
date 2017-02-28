@@ -1,1 +1,1 @@
-angular.module('app', ['relojcomponent']);
+angular.module('app', ['relojcomponent', 'formcomponent']);

@@ -1,4 +1,4 @@
-angular.module('app', ['relojcomponent']);
+angular.module('app', ['relojcomponent', 'formcomponent']);
  angular.module("relojcomponent", [])
      .component('relojcomponent', {
          templateUrl: './reloj.html',
@@ -78,12 +78,19 @@ angular.module('app', ['relojcomponent']);
              };
          }
      ]);
-describe('RelojController', function() {
-    beforeEach(module('relojcomponent'));
-
-    var $controller;
-
-    beforeEach('$scope.grade', function(_$controller_) {
-        $controller = _$controller_;
+angular.module("formcomponent", [])
+    .component('formcomponent', {
+        templateUrl: './form.html',
+        controller: 'formController',
     })
-})
+    .controller("formController", ['$window', function($window) {
+        var ctrl = this;
+        ctrl.login = function(username, password) {
+            console.log(username);
+            if (username === 'Angel' && password === 'Angel') {
+                $window.location.href = '/passwordspage.html'
+            } else {
+                ctrl.isCorrect = false;
+            }
+        }
+    }]);

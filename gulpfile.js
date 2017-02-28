@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
-var ngAnnotate = require('gulp-ng-annotate');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
@@ -36,8 +35,6 @@ gulp.task('minify-css', ['sass'], function() {
 gulp.task('concat', function() {
     return gulp.src(['components/**/*.js', '!components/build{,/**}'])
         .pipe(concat('main.js'))
-        .pipe(plumber())
-        .pipe(ngAnnotate({ add: true }))
         .pipe(gulp.dest(tmp + 'js'))
         //NO MINIFICA CON COMPONENTES
         /*        .pipe(uglify({ mangle: true }))

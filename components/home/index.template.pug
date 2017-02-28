@@ -1,12 +1,15 @@
 html
     head
-        title RELOJ by Angel
+        title GESTOR DE CONTRASEÑAS
         link(rel= 'stylesheet', href="https://fonts.googleapis.com/css?family=Play|Source+Sans+Pro")
         script(src='https://use.fontawesome.com/f4e7614a5b.js')
         link(rel='stylesheet', type='text/css', href='main.css')
         //RECUERDA, NO FUNCIONA BROWSERSYNC SIN LOS TAGS HTML HEAD Y BODY !!!!!!!!!!
-    body   
-        div(ng-app='app')
-             relojcomponent
+    body(class = "index-page")
+            div(ng-app='app')
+                formcomponent
+                relojcomponent       
+    footer Made by Angel Urbano  
     script(src='js/bower.js')
     script(src='js/main.js')
+    
