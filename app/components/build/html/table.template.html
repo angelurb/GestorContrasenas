@@ -1,0 +1,14 @@
+
+<div>
+  <div class="table-exteriorbox">
+    <table>
+      <tr>WEBSITE LOGIN PASSWORD</tr>
+      <tr> 
+        <passwordelementcomponent ng-repeat="element in $ctrl.elements" element="element" on-delete="$ctrl.deleteElement(element)"></passwordelementcomponent>
+      </tr>
+      <tr>
+        <button ng-click="$ctrl.addElement()">Create</button>
+      </tr>
+    </table>
+  </div>
+</div>

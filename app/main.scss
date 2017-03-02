@@ -1,0 +1,10 @@
+//Variables
+@import "components/common/variables";
+//css components
+@import "components/common/reloj/scss/clock";
+@import "components/home/components/form";
+@import "components/passwordspage/components/passwordElement/passwordelement";
+@import "components/passwordspage/components/table/table";
+//css pages
+@import "components/home/home";
+@import "components/passwordspage/passwordspage";

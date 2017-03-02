@@ -1,38 +1,39 @@
 {
-    "name": "gestor",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/angelurb/GestorContrasenas.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/angelurb/GestorContrasenas/issues"
-    },
-    "homepage": "https://github.com/angelurb/GestorContrasenas#readme",
-    "devDependencies": {
-        "browser-sync": "^2.18.8",
-        "gulp-changed": "^2.0.0",
-        "gulp-clean": "^0.3.2",
-        "gulp-clean-css": "^3.0.3",
-        "gulp-concat": "^2.6.1",
-        "gulp-connect": "^5.0.0",
-        "gulp-filter": "^5.0.0",
-        "gulp-htmlmin": "^3.0.0",
-        "gulp-minify": "0.0.15",
-        "gulp-plumber": "^1.1.0",
-        "gulp-pug": "^3.2.0",
-        "gulp-rename": "^1.2.2",
-        "gulp-replace-name": "^1.0.1",
-        "gulp-sass": "^3.1.0",
-        "gulp-uglify": "^2.0.1",
-        "main-bower-files": "^2.13.1",
-        "run-sequence": "^1.2.2"
-    }
+  "name": "gestor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelurb/GestorContrasenas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelurb/GestorContrasenas/issues"
+  },
+  "homepage": "https://github.com/angelurb/GestorContrasenas#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp-changed": "^2.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-filter": "^5.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-minify": "0.0.15",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace-name": "^1.0.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "main-bower-files": "^2.13.1",
+    "run-sequence": "^1.2.2"
+  }
 }

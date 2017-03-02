@@ -1,8 +1,0 @@
-div(ng-controller="formController")
-    .form-exteriorbox
-        .login-title Log in
-        form(class="form-loginbox")
-            input(type='text', class="form-name", placeholder = "Username",ng-model = "$ctrl.username", required)
-            input(type='password', class ="form-password", placeholder = "Password",ng-model = "$ctrl.password", required) 
-            input(type='submit', value="Send", class ="form-button", ng-click= "$ctrl.login($ctrl.username, $ctrl.password)")
-        span(class="form-error", ng-if="$ctrl.isCorrect === false") Username or Password incorrect 

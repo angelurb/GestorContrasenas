@@ -1,0 +1,10 @@
+div
+    .table-exteriorbox
+        table
+            tr WEBSITE LOGIN PASSWORD
+            tr 
+                passwordelementcomponent( ng-repeat = "element in $ctrl.elements" element="element" on-delete = "$ctrl.deleteElement(element)" )
+            tr
+                button(ng-click= "$ctrl.addElement()") Create
+        
+            

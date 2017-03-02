@@ -9,66 +9,63 @@ var runSequence = require('run-sequence');
 var cleanCSS = require('gulp-clean-css');
 var pug = require('gulp-pug');
 var htmlmin = require('gulp-htmlmin');
-var replaceName = require('gulp-replace-name');
-var mainBowerFiles = require('main-bower-files');
 var changed = require('gulp-changed');
 var clean = require('gulp-clean');
+var sourcemaps = require('gulp-sourcemaps');
 
-var tmp = "tmp/"
+
+var tmp = ".tmp/"
 
 //SASS *
 gulp.task('sass', function() {
-    return gulp.src('components/**/main.scss')
+    return gulp.src('app/main.scss')
         .pipe(sass())
         .pipe(rename({ dirname: '' }))
-        .pipe(gulp.dest('components/build/css'))
+        .pipe(gulp.dest('app/components/build/css'))
 });
 
 gulp.task('minify-css', ['sass'], function() {
-    return gulp.src('components/**/main.css')
-        .pipe(concat('main.css'))
+    return gulp.src('app/components/build/css/main.css')
+        .pipe(sourcemaps.init())
         .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(tmp))
 });
 
 //CONCATENATE .JS, UGLIFY IT
 gulp.task('concat', function() {
-    return gulp.src(['components/**/*.js', '!components/build{,/**}'])
+    return gulp.src(['app/app.module.js', 'app/components/**/*.js', '!app/components/build{,/**}'])
+        .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(tmp + 'js'))
-        //NO MINIFICA CON COMPONENTES
-        /*        .pipe(uglify({ mangle: true }))
-                .pipe(rename('app.min.js'))
-                .pipe(gulp.dest(tmp))*/
 });
 
 
 //PUG TO html
 gulp.task('views', function buildHTML() {
-    return gulp.src('components/**/*.pug')
+    return gulp.src('app/**/*.pug')
         .pipe(pug({ pretty: true }))
         .pipe(rename({ dirname: '' }))
-        .pipe((gulp.dest('components/build/html')))
+        .pipe((gulp.dest('app/components/build/html')))
 });
 
 //HTML MINIFIED
 
 gulp.task('minify-html', ['views'], function() {
-    return gulp.src('components/build/html/*.html')
+    return gulp.src('app/components/build/html/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(replaceName(/\.template\.html/g, '.html'))
-        .pipe(gulp.dest(tmp));
+        .pipe(gulp.dest(tmp + 'views'));
 });
 
 //CHECK CHANGES 
 gulp.task('watch', ['browserSync'], function() {
-    gulp.watch('components/**/*.pug', ['minify-html']);
-    gulp.watch('components/**/*.js', ['concat']);
-    gulp.watch('components/**/*.scss', ['minify-css']);
+    gulp.watch('app/components/**/*.pug', ['minify-html']);
+    gulp.watch('app/components/**/*.js', ['concat']);
+    gulp.watch('app/components/**/*.scss', ['minify-css']);
     gulp.watch(tmp + '*.html', browserSync.reload);
     gulp.watch(tmp + '*.js', browserSync.reload);
     gulp.watch(tmp + '*.css', browserSync.reload);
-
 });
 
 //WEBSERVER WITH BROWSERSYNC
@@ -83,16 +80,13 @@ gulp.task('browserSync', function() {
 
 //BOWER FILES
 gulp.task('bower', function() {
-    return gulp.src(mainBowerFiles())
-        .pipe(gulp.dest('components/build/bower'));
-});
-
-gulp.task('concatbower', function() {
-    return gulp.src('components/build/bower/*.js')
+    return gulp.src([
+            'app/bower_components/angular/angular.min.js',
+            'app/bower_components/angular-route/angular-route.min.js'
+        ])
         .pipe(concat('bower.js'))
         .pipe(gulp.dest(tmp + 'js'));
 });
-
 
 gulp.task('default', function(callback) {
     runSequence(['bower', 'concat', 'minify-css', 'minify-html', 'watch'],
