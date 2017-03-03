@@ -5,30 +5,30 @@
         bindings: {
             element: '<',
             onDelete: '&',
-            addElement: '&'
+            addElement: '&',
+            save: '&',
+            close: '&'
         },
         controller: function() {
             var ctrl = this;
-            ctrl.create = () => {
-                ctrl.addElement();
-            }
             ctrl.reset = () => {
-                ctrl.element.website = ctrl.element.websiteCopy;
-                ctrl.element.login = ctrl.element.loginCopy;
-                ctrl.element.password = ctrl.element.passwordCopy;
+                ctrl.element.website = '';
+                ctrl.element.login = '';
+                ctrl.element.password = '';
             };
-            ctrl.edit = () => {
-                ctrl.editMode = !ctrl.editMode;
-                ctrl.element.websiteCopy = ctrl.element.website;
-                ctrl.element.loginCopy = ctrl.element.login;
-                ctrl.element.passwordCopy = ctrl.element.password;
-            }
             ctrl.delete = () => {
                 ctrl.onDelete();
             }
-            ctrl.save = () => {
-                ctrl.editMode = !ctrl.editMode;
+            ctrl.guardar = () => {
+                if (ctrl.element === undefined) {
+                    ctrl.camposVacios = true;
+                } else {
+                    ctrl.save({ elemento: ctrl.element });
+                }
             }
+            ctrl.cerrar = () => {
+                ctrl.close();
+            };
         }
     });
 })();

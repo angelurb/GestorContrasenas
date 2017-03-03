@@ -18,9 +18,12 @@ div(class="table-exterior-box")
                     span(ng-if = "!showPass") {{('*').repeat(element.password.length)}}
                     button(ng-click = "showPass=!showPass" class="btn button-table btn-small") Show
                 td
-                    passwordelementcomponent(class="passElem" element="element" on-delete = "$ctrl.deleteElement(element)")
+                    button(class = "btn button-table" ng-click= "$ctrl.edit($index)") Edit
+                    button(class = "btn button-table" ng-click= "$ctrl.wantDelete=$index") Delete
+                    div(ng-if = "$ctrl.wantDelete === $index") Are you sure???????
+                        button(class = "btn button-table" ng-click= "$ctrl.deleteElement(element); $ctrl.wantDelete = ''") Yes
+                        button(class = "btn button-table" ng-click= "$ctrl.wantDelete = ''") No
             tr
                 td(colspan="4") 
                     button(class = "btn button-table" ng-click= "$ctrl.addElement()") Create
-    
-            
+    passwordelementcomponent(ng-if="$ctrl.editMode || $ctrl.newRegister" save="$ctrl.guardar(elemento)" close="$ctrl.cerrar()")

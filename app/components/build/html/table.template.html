@@ -20,7 +20,12 @@
           <button class="btn button-table btn-small" ng-click="showPass=!showPass">Show</button>
         </td>
         <td>
-          <passwordelementcomponent class="passElem" element="element" on-delete="$ctrl.deleteElement(element)"></passwordelementcomponent>
+          <button class="btn button-table" ng-click="$ctrl.edit($index)">Edit</button>
+          <button class="btn button-table" ng-click="$ctrl.wantDelete=$index">Delete</button>
+          <div ng-if="$ctrl.wantDelete === $index">Are you sure???????
+            <button class="btn button-table" ng-click="$ctrl.deleteElement(element); $ctrl.wantDelete = ''">Yes</button>
+            <button class="btn button-table" ng-click="$ctrl.wantDelete = ''">No</button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -30,4 +35,5 @@
       </tr>
     </tbody>
   </table>
+  <passwordelementcomponent ng-if="$ctrl.editMode || $ctrl.newRegister" save="$ctrl.guardar(elemento)" close="$ctrl.cerrar()"></passwordelementcomponent>
 </div>
