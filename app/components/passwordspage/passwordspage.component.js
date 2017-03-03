@@ -6,7 +6,7 @@
     }).config(function($routeProvider) {
         $routeProvider
             .when('/passwordspage', {
-                template: '<passwordspagecomponent></passwordspagecomponent> <searchbarcomponent></searchbarcomponent>'
+                template: '<passwordspagecomponent></passwordspagecomponent>'
             });
     });
 })();

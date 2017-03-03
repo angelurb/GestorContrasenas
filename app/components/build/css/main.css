@@ -16,7 +16,6 @@
 .clock-exteriorbox {
   background-color: #424242;
   padding: 30px;
-  width: 200px;
   font-family: "Source Sans Pro", sans-serif;
   border-radius: 5px;
   opacity: 0.9; }
@@ -78,28 +77,32 @@
 .login-title {
   font-size: 300%;
   margin-top: 15px;
-  font-family: Helvetica, Sans-Serif; }
+  font-family: Helvetica, Sans-Serif;
+  color: #000000;
+  font-size: 60px; }
 
 .form-name {
   float: left;
+  width: inherit;
   margin-left: 24%;
   margin-bottom: 3%; }
 
 .form-password {
   float: left;
+  width: inherit;
   margin-left: 24%;
   margin-bottom: 2%; }
 
 .form-button {
   float: right;
   width: 60px;
-  margin-right: 23.5%;
+  margin-right: 26.5%;
   background-color: #027569;
   border: none;
   cursor: pointer; }
 
-.form-button:hover {
-  background-color: #01564d; }
+.btn:hover {
+  background-color: #01564d !important; }
 
 .form-error {
   float: left;
@@ -127,16 +130,44 @@
 .form-password::-webkit-input-placeholder {
   font-family: Helvetica, Sans-Serif; }
 
+table {
+  color: white;
+  border-radius: 30px;
+  margin-top: 20px; }
+
+.table-exterior-box {
+  position: absolute;
+  font-family: Helvetica, Sans-Serif;
+  padding: 50px;
+  background-color: #424242;
+  opacity: 0.9;
+  border-radius: 30px;
+  text-align: center;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+td {
+  text-align: center; }
+
+.button-table {
+  background-color: #027569;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  outline: none; }
+
+.btn-small {
+  font-size: 10px;
+  float: right;
+  margin-left: 15px; }
+
 .body-background {
   background-image: url(images/fondoGestor.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; }
-
-.home-style {
-  position: relative;
-  width: 100%;
-  height: 100%; }
 
 footer {
   position: absolute;
@@ -148,3 +179,6 @@ footer {
 .clock-component {
   position: absolute;
   bottom: 0px; }
+
+.blur {
+  filter: blur(5px); }

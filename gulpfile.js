@@ -32,6 +32,17 @@ gulp.task('minify-css', ['sass'], function() {
         .pipe(gulp.dest(tmp))
 });
 
+gulp.task('concat-css', ['minify-css'], function() {
+    return gulp.src([
+            'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+            '.tmp/main.css'
+        ])
+        .pipe(sourcemaps.init())
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(tmp))
+});
 //CONCATENATE .JS, UGLIFY IT
 gulp.task('concat', function() {
     return gulp.src(['app/app.module.js', 'app/components/**/*.js', '!app/components/build{,/**}'])
@@ -53,16 +64,18 @@ gulp.task('views', function buildHTML() {
 //HTML MINIFIED
 
 gulp.task('minify-html', ['views'], function() {
-    return gulp.src('app/components/build/html/*.html')
+    gulp.src('app/components/build/html/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest(tmp + 'views'));
+        .pipe(gulp.dest(tmp + 'views'))
+    gulp.src(tmp + 'views/index.html').pipe(gulp.dest(tmp));
 });
+
 
 //CHECK CHANGES 
 gulp.task('watch', ['browserSync'], function() {
     gulp.watch('app/components/**/*.pug', ['minify-html']);
     gulp.watch('app/components/**/*.js', ['concat']);
-    gulp.watch('app/components/**/*.scss', ['minify-css']);
+    gulp.watch('app/components/**/*.scss', ['concat-css']);
     gulp.watch(tmp + '*.html', browserSync.reload);
     gulp.watch(tmp + '*.js', browserSync.reload);
     gulp.watch(tmp + '*.css', browserSync.reload);
@@ -82,14 +95,16 @@ gulp.task('browserSync', function() {
 gulp.task('bower', function() {
     return gulp.src([
             'app/bower_components/angular/angular.min.js',
-            'app/bower_components/angular-route/angular-route.min.js'
+            'app/bower_components/angular-route/angular-route.min.js',
+            'app/bower_components/jquery/dist/jquery.min.js',
+            'app/bower_components/bootstrap/dist/js/bootstrap.min.js'
         ])
         .pipe(concat('bower.js'))
         .pipe(gulp.dest(tmp + 'js'));
 });
 
 gulp.task('default', function(callback) {
-    runSequence(['bower', 'concat', 'minify-css', 'minify-html', 'watch'],
+    runSequence(['bower', 'concat', 'concat-css', 'minify-html', 'watch'],
         callback
     )
 });

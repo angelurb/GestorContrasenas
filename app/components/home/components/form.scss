@@ -22,16 +22,20 @@
     font-size: 300%;
     margin-top: 15px;
     font-family: $font-family-form;
+    color: $color-black;
+    font-size: 60px;
 }
 
 .form-name {
     float: left;
+    width: inherit;
     margin-left: 24%;
     margin-bottom: 3%;
 }
 
 .form-password {
     float: left;
+    width: inherit;
     margin-left: 24%;
     margin-bottom: 2%;
 }
@@ -39,14 +43,14 @@
 .form-button {
     float: right;
     width: 60px;
-    margin-right: 23.5%;
+    margin-right: 26.5%;
     background-color: #027569;
     border: none;
     cursor: pointer;
 }
 
-.form-button:hover {
-    background-color: #01564d;
+.btn:hover {
+    background-color: #01564d !important;
 }
 
 .form-error {
