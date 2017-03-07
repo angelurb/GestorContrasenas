@@ -1,12 +1,12 @@
 .clock-weekdays,
 .clock-format {
-    color: $color-grey;
+    color: $color-buttons;
 }
 
 .highlight,
 .fa-clock-o,
 .clock-time {
-    color: $color-white;
+    color: $color-light-green-primary;
 }
 
 .clock-weekdays,
@@ -17,7 +17,10 @@
 }
 
 .clock-exteriorbox {
-    background-color: $color-grey;
+    float: left;
+    margin-top: 700px;
+    margin-right: 100px;
+    background-color: $color-green-primary;
     padding: (30px/200px*$total-box-size);
     font-family: $font-family-exteriorbox;
     border-radius: (5px/200px*$total-box-size);
@@ -30,7 +33,7 @@
 
 .clock-interiorbox {
     border-radius: (5px/200px*$total-box-size);
-    background-color: $color-black;
+    background-color: $color-grey;
     overflow: hidden;
     opacity: 1;
 }

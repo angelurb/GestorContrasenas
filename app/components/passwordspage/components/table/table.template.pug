@@ -1,29 +1,53 @@
-div(class="table-exterior-box")
-    input(class="form-control" ng-model = "searchTerm" , required)
-    button(class = "btn button-table" ng-click= "myFilter = searchTerm") Search
-    button(class = "btn button-table" ng-click= "myFilter = ''") Restart
-    table(class="table table-bordered")
+include includes/modal.template.pug
+div.table-exterior-box
+    input(class="form-control" ,
+            ng-model = "searchTerm" , 
+            required)
+    table.table
         thead
             tr 
                 th WEBSITE 
+                    button(ng-click=('$ctrl.orderFilter(1)'),
+                            aria-hidden="true" ,
+                            class = "btn-order glyphicon glyphicon-chevron-up",
+                            ng-class="{active : ($ctrl.isActive===1)}")
+                    button(ng-click=('$ctrl.orderFilter(2)'),
+                            aria-hidden="true",
+                            class = "btn-order glyphicon glyphicon-chevron-down" ,
+                            ng-class="{active : ($ctrl.isActive===2)}") 
                 th LOGIN
-                th PASSWORD
+                    button(ng-click=('$ctrl.orderFilter(3)'),
+                            aria-hidden="true" ,
+                            class = "btn-order glyphicon glyphicon-chevron-up" ,
+                            ng-class="{active : ($ctrl.isActive===3)}")
+                    button(ng-click=('$ctrl.orderFilter(4)') ,
+                            aria-hidden="true" ,
+                            class = "btn-order glyphicon glyphicon-chevron-down" ,
+                            ng-class="{active : ($ctrl.isActive===4)}") 
+                th PASSWORD 
                 th OPTIONS
         tbody
-            tr(ng-repeat = "element in $ctrl.elements | filter:myFilter")
+            tr(ng-if ="$ctrl.elements!==[]" ng-repeat = "element in $ctrl.elements | filter:searchTerm | orderBy:$ctrl.order:$ctrl.reverse")
                 td {{element.website}}
                 td {{element.login}}
                 td 
                     span(ng-if = "showPass") {{element.password}} 
                     span(ng-if = "!showPass") {{('*').repeat(element.password.length)}}
-                    button(ng-click = "showPass=!showPass" class="btn button-table btn-small") Show
-                td
-                    button(class = "btn button-table" ng-click= "$ctrl.edit($index)") Edit
-                    button(class = "btn button-table" ng-click= "$ctrl.wantDelete=$index") Delete
-                    div(ng-if = "$ctrl.wantDelete === $index") Are you sure???????
-                        button(class = "btn button-table" ng-click= "$ctrl.deleteElement(element); $ctrl.wantDelete = ''") Yes
-                        button(class = "btn button-table" ng-click= "$ctrl.wantDelete = ''") No
+                    button(ng-click = "showPass=!showPass" class="btn-order btn-small") Show
+                td.options-btn
+                    button(class = "btn button-table btn-edit-delete" ,
+                            ng-click= "$ctrl.edit(element)") Edit
+                    button(class = "btn button-table btn-edit-delete" ,
+                            data-toggle="modal" ,
+                            data-target="#myModal" ,
+                            ng-click= "$ctrl.elem = element") Delete
+                    
             tr
                 td(colspan="4") 
-                    button(class = "btn button-table" ng-click= "$ctrl.addElement()") Create
-    passwordelementcomponent(ng-if="$ctrl.editMode || $ctrl.newRegister" save="$ctrl.guardar(elemento)" close="$ctrl.cerrar()")
+                    button(class = "btn button-table" ,
+                            ng-click= "$ctrl.addElement()") Create
+    passwordelementcomponent(ng-if="$ctrl.editMode || $ctrl.newRegister" ,
+                             save="$ctrl.guardar(elemento)" ,
+                             close="$ctrl.cerrar()",
+                             element-to-edit = "$ctrl.elementToEditF")
+    

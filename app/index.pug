@@ -1,10 +1,15 @@
 html(ng-app = 'app')
     head
+        meta(charset="UTF-8")
+        meta(name="description" content="This is a simple learning project intended to help new developers start developing with AngularJS 1.5.5(Based on Components)  and different optimization technologies")
+        meta(name="author" content="Angel Urbano")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="icon" href="images/icon.png")
         title GESTOR DE CONTRASEÑAS
         link(rel= 'stylesheet', href="https://fonts.googleapis.com/css?family=Play|Source+Sans+Pro")
         link(rel='stylesheet', type='text/css', href='main.css')
     body(class ="body-background")
-        div(class="container-fluid" ng-view)                      
+        div.container(ng-view)                      
     footer Made by Angel Urbano  
     script(src='js/bower.js')
     script(src='js/main.js')

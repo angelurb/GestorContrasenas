@@ -2,47 +2,60 @@
     'use strict';
     angular.module('app').component('tablecomponent', {
         templateUrl: 'views/table.template.html',
-        controller: function() {
-            var ctrl = this;
-            ctrl.wantDelete = '';
-            ctrl.elements = [{
-                website: 'www.gmail.com',
-                login: 'angel',
-                password: 'angel'
-            }, {
-                website: 'www.hotmail.com',
-                login: 'angel',
-                password: 'angel'
-            }];
-            ctrl.guardar = (elemento) => {
-                if (ctrl.editMode) {
-                    ctrl.elements.splice(ctrl.index, 1, elemento);
-                    ctrl.editMode = false;
-                } else if (ctrl.newRegister) {
-                    ctrl.elements.push(elemento);
-                    ctrl.newRegister = false;
+        controller: function(LS, cookiesService) {
+            this.user = cookiesService.getCookie("in");
+            this.elements = (LS.getData(this.user).length !== 0) ? LS.getData(this.user) : '';
+            console.log(this.elements);
+            this.guardar = (elemento) => {
+                if (this.editMode) {
+                    LS.setData(elemento, this.index, this.user);
+                    this.editMode = false;
+                } else if (this.newRegister) {
+                    LS.setData(elemento, this.elements !== '' ? Number(this.elements[this.elements.length - 1].id) + 1 : 0, this.user);
+                    this.newRegister = false;
                 }
+                this.elements = LS.getData(this.user);
+
             };
             this.deleteElement = (element) => {
-                var idx = ctrl.elements.indexOf(element);
-                if (idx >= 0) {
-                    ctrl.elements.splice(idx, 1);
+                LS.deleteElement(element.id, this.user);
+                this.elements = (LS.getData(this.user).length !== 0) ? LS.getData(this.user) : '';
+            }
+            this.addElement = () => {
+                this.newRegister = true;
+                this.elementToEditF = undefined;
+            }
+            this.edit = (element) => {
+                this.index = element.id;
+                this.elementToEditF = element;
+                this.editMode = !this.editMode;
+            }
+            this.cerrar = () => {
+                this.editMode = false;
+                this.newRegister = false;
+            };
+
+            this.orderFilter = (isActive) => {
+                this.isActive = isActive;
+                switch (isActive) {
+                    case 1:
+                        this.order = this.website;
+                        this.reverse = false;
+                        break;
+                    case 2:
+                        this.order = this.website;
+                        this.reverse = true;
+                        break;
+                    case 3:
+                        this.order = this.login;
+                        this.reverse = false;
+                        break;
+                    case 4:
+                        this.order = this.login;
+                        this.reverse = true;
+                        break;
                 }
             }
-            ctrl.wantDelete = (i) => {
-                return true;
-            }
-            ctrl.addElement = () => {
-                ctrl.newRegister = true;
-            }
-            ctrl.edit = (i) => {
-                ctrl.index = i;
-                ctrl.editMode = !ctrl.editMode;
-            }
-            ctrl.cerrar = () => {
-                ctrl.editMode = false;
-                ctrl.newRegister = false;
-            };
         }
-    });
+    })
 })();
