@@ -5,13 +5,12 @@
         controller: function(LS, cookiesService) {
             this.user = cookiesService.getCookie("in");
             this.elements = (LS.getData(this.user).length !== 0) ? LS.getData(this.user) : '';
-            console.log(this.elements);
             this.guardar = (elemento) => {
                 if (this.editMode) {
                     LS.setData(elemento, this.index, this.user);
                     this.editMode = false;
                 } else if (this.newRegister) {
-                    LS.setData(elemento, this.elements !== '' ? Number(this.elements[this.elements.length - 1].id) + 1 : 0, this.user);
+                    LS.setData(elemento, this.elements !== '' ? Number(this.elements[this.elements.length - 1].id) + 1 : 1, this.user);
                     this.newRegister = false;
                 }
                 this.elements = LS.getData(this.user);
@@ -59,3 +58,25 @@
         }
     })
 })();
+
+//VISUAL TOOLTIP
+$(document).on('mouseenter', ".iftooltip", function() {
+    var $this = $(this);
+    if ($this.attr('pass')) {
+        $this.tooltip({
+            title: $this.attr('pass'),
+            placement: "left"
+        });
+        $this.tooltip('show');
+    }
+    if (this.offsetWidth < this.scrollWidth) {
+        $this.tooltip({
+            title: $this.attr('x'),
+            placement: "bottom"
+        });
+        console.log($this.attr('x'));
+        if ('pass') {
+            $this.tooltip('show');
+        }
+    }
+});

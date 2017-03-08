@@ -1,9 +1,9 @@
-div( ng-controller='RelojController', class="clock-component")
+div( ng-controller='RelojController')
     .clock-exteriorbox
         .clock-interiorbox
             .clock-weekdaysbox
                 .clock-weekdays(ng-repeat='day in $ctrl.daysArray', ng-class="{'highlight': $index === $ctrl.weekday-1}") {{day}}
-            i.fa.fa-clock-o(aria-hidden='true')
+            span.glyphicon.glyphicon-time
             .clock-hoursbox
                 .clock-time(ng-if='$ctrl.hours < 10') 0
                 .clock-time {{ $ctrl.hours }}

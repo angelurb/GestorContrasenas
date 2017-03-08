@@ -30,7 +30,8 @@
             return {
                 setData: function(val, idx, user) {
                     val.id = idx;
-                    localStorage.setItem(user + 'element' + idx, angular.toJson(val));
+                    console.log(val)
+                    localStorage.setItem(idx + user + 'element', angular.toJson(val));
                     //return this to concatenate str.setData().saddsa()....
                     return this;
                 },

@@ -1,6 +1,6 @@
-div(class = "home-style")
-    relojcomponent
-    img(class = "lock-icon" src = "images/icon.png")
-    formcomponent(class = "form",
-                    on-login = "$ctrl.login(user, password)", 
-                  is-correct = "$ctrl.isCorrect")
+div.container
+    h1.name-app GoPass
+    img.lock-icon( src = "images/icon.png")
+    formcomponent(on-login = "$ctrl.login(user, password)", 
+                    is-correct = "$ctrl.isCorrect")
+    relojcomponent.home-comp

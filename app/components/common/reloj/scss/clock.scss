@@ -1,12 +1,12 @@
 .clock-weekdays,
 .clock-format {
-    color: $color-buttons;
+    color: $color-divider;
 }
 
 .highlight,
 .fa-clock-o,
 .clock-time {
-    color: $color-light-green-primary;
+    color: $color-grey;
 }
 
 .clock-weekdays,
@@ -16,31 +16,17 @@
     float: left;
 }
 
-.clock-exteriorbox {
-    float: left;
-    margin-top: 700px;
-    margin-right: 100px;
-    background-color: $color-green-primary;
-    padding: (30px/200px*$total-box-size);
-    font-family: $font-family-exteriorbox;
-    border-radius: (5px/200px*$total-box-size);
-    opacity: 0.9;
-}
-
-.clock-exteriorbox:hover {
-    opacity: 1;
-}
-
 .clock-interiorbox {
     border-radius: (5px/200px*$total-box-size);
-    background-color: $color-grey;
+    background-color: $color-white;
     overflow: hidden;
     opacity: 1;
 }
 
 .clock-weekdaysbox {
-    padding-left: (8.5px/200px*$total-box-size);
     padding-top: (3px/200px*$total-box-size);
+    padding-right: (5px/200px*$total-box-size);
+    padding-left: (5px/200px*$total-box-size);
 }
 
 .clock-weekdays {
@@ -49,16 +35,17 @@
     font-size: (9.5px/200px*$total-box-size);
 }
 
-.fa-clock-o {
+.glyphicon-time {
+    float: left;
     font-size: (15px/200px*$total-box-size);
     padding-left: (12px/200px*$total-box-size);
-    padding-top: (18px/200px*$total-box-size);
-    padding-right: (3px/200px*$total-box-size);
+    padding-top: (20px/200px*$total-box-size);
+    padding-right: (6px/200px*$total-box-size);
 }
 
 .clock-hoursbox {
     font-family: $font-family-hoursbox;
-    font-size: (35px/200px*$total-box-size);
+    font-size: (34px/200px*$total-box-size);
 }
 
 .clock-time {
