@@ -8,7 +8,7 @@ angular.module("app").controller("RelojController", [
         ctrl.$onInit = function() {
                 getActualDate();
                 noonCheck();
-                intervalTime(intervalMs);
+                ctrl.intervalTime(intervalMs);
             }
             //Funciones Privadas
 
@@ -30,29 +30,30 @@ angular.module("app").controller("RelojController", [
         };
 
         //Interval  
-        function intervalTime(intervalMs) {
+        ctrl.intervalTime = (intervalMs) => {
             $interval(() => {
-                actualizarHora();
+                ctrl.actualizarHora();
             }, intervalMs);
         };
 
         //Actualiza la hora del Reloj cada vez que se llama
-        function actualizarHora() {
+        ctrl.actualizarHora = () => {
             if (ctrl.seconds >= secNum) {
                 ctrl.seconds = 0;
                 ctrl.minutes++;
                 if (ctrl.minutes >= secNum) {
-                    checkChange(ctrl.minutes, secNum) ? (ctrl.minutes = 0, ctrl.hours++) : '';
-                    checkChangeWeekday();
-                    checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0, ctrl.isNoon = !ctrl.isNoon) : '';
+                    ctrl.checkChange(ctrl.minutes, secNum) ? (ctrl.minutes = 0, ctrl.hours++) : '';
+                    ctrl.checkChangeWeekday();
+                    ctrl.checkChange(ctrl.hours, ctrl.noonHours) ? (ctrl.hours = 0, ctrl.isNoon = !ctrl.isNoon) : '';
                 }
+            } else {
+                ctrl.seconds++;
             }
-            ctrl.seconds++;
         };
 
 
         //Cambio de día de la semana
-        function checkChangeWeekday() {
+        ctrl.checkChangeWeekday = () => {
             if (ctrl.isNoon === true && ctrl.hours >= 12) {
                 if (ctrl.weekday < 7) {
                     ctrl.weekday++;
@@ -63,7 +64,7 @@ angular.module("app").controller("RelojController", [
         };
 
         //Comprobación de cambio (Ej: Si han passado 60 segundos, devuelve true para incrementar los minutos)
-        function checkChange(value, maxValue) {
+        ctrl.checkChange = (value, maxValue) => {
             if (value >= maxValue) {
                 return true;
             } else {

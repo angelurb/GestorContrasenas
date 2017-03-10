@@ -74,7 +74,6 @@ $(document).on('mouseenter', ".iftooltip", function() {
             title: $this.attr('x'),
             placement: "bottom"
         });
-        console.log($this.attr('x'));
         if ('pass') {
             $this.tooltip('show');
         }

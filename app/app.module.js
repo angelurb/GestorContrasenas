@@ -30,7 +30,6 @@
             return {
                 setData: function(val, idx, user) {
                     val.id = idx;
-                    console.log(val)
                     localStorage.setItem(idx + user + 'element', angular.toJson(val));
                     //return this to concatenate str.setData().saddsa()....
                     return this;
@@ -48,7 +47,7 @@
                     return all;
                 },
                 deleteElement: function(idx, user) {
-                    localStorage.removeItem(user + 'element' + idx);
+                    localStorage.removeItem(idx + user + 'element');
                 }
             }
         });

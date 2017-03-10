@@ -1,7 +1,6 @@
 {
   "name": "gestor",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,8 +22,8 @@
     "gulp-clean-css": "^3.0.3",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
-    "gulp-filter": "^5.0.0",
     "gulp-htmlmin": "^3.0.0",
+    "gulp-karma": "0.0.5",
     "gulp-minify": "0.0.15",
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.2.0",
@@ -33,7 +32,12 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.0.1",
-    "main-bower-files": "^2.13.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-spec-reporter": "0.0.30",
     "run-sequence": "^1.2.2"
   }
 }

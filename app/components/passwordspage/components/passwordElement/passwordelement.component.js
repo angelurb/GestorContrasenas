@@ -19,10 +19,10 @@
                 } catch (error) {}
             };
             ctrl.guardar = () => {
-                if (ctrl.element === undefined ||
-                    ctrl.element.website === undefined ||
-                    ctrl.element.login === undefined ||
-                    ctrl.element.password === undefined) {
+                if (ctrl.element === undefined || ctrl.element === '' ||
+                    ctrl.element.website === undefined || ctrl.element.website === '' ||
+                    ctrl.element.login === undefined || ctrl.element.login === '' ||
+                    ctrl.element.password === undefined || ctrl.element.password === '') {
                     ctrl.camposVacios = true;
                 } else {
                     ctrl.save({ elemento: ctrl.element });
