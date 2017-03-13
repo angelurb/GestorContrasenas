@@ -11,24 +11,28 @@ describe("component: relojcomponent", function() {
             minutes = date.getMinutes(),
             seconds = date.getSeconds(),
             weekday = date.getDay();
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         ctrl.$onInit();
-        expect(ctrl.minutes).not.toBeGreaterThan(minutes);
+        expect(ctrl.minutes).toBe(minutes);
         expect(ctrl.seconds).not.toBeGreaterThan(seconds + 5);
         expect(ctrl.weekday).toBe(weekday);
         expect(ctrl.daysArray).toBeDefined();
     });
 
     it('should check if its Noon or not', function() {
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         var date = new Date(),
             hours = date.getHours();
         ctrl.$onInit();
-        expect(ctrl.hours).toBe(hours - 12);
+        if (ctrl.isNoon) {
+            expect(ctrl.hours).toBe(hours - 12);
+        } else {
+            expect(ctrl.hours).toBe(hours);
+        }
     });
 
     it('should change the seconds according to the performance of the clocks', function() {
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         ctrl.seconds = 30;
         ctrl.actualizarHora();
         expect(ctrl.seconds).toBe(31);
@@ -40,7 +44,7 @@ describe("component: relojcomponent", function() {
         expect(ctrl.seconds).toBe(0);
     });
     it('should change the minutes according to the performance of the clocks', function() {
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         ctrl.seconds = 59;
         ctrl.minutes = 1;
         ctrl.actualizarHora();
@@ -51,7 +55,7 @@ describe("component: relojcomponent", function() {
         expect(ctrl.minutes).toBe(0);
     });
     it('should change the hours according to the performance of the clocks', function() {
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         ctrl.$onInit();
         ctrl.hours = 1;
         ctrl.minutes = 59;
@@ -67,7 +71,7 @@ describe("component: relojcomponent", function() {
     });
 
     it('should check if the day changes when the day ends', function() {
-        var ctrl = $componentController('relojcomponent', { $scope: {} });
+        var ctrl = $componentController('relojcomponent', null, {});
         ctrl.isNoon = true;
         ctrl.hours = 12;
         ctrl.weekday = 1;

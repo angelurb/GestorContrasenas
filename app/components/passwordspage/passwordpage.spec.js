@@ -1,13 +1,20 @@
-describe("component: relojcomponent", function() {
+describe("component: passwordspagecomponent", function() {
     //Let us run code before each test(app)
     beforeEach(module('app'));
     var $componentController;
     beforeEach(inject(function(_$componentController_) {
         $componentController = _$componentController_;
     }));
-
-    it('should have Date variables stored inbetween a range', function() {
-        //var ctrl = $componentController('relojcomponent', { $scope: {} });
-
+    beforeEach(inject(function($injector) {
+        cS = $injector.get('cookiesService');
+    }));
+    it('should logout which means delete cookie and go back to login page', function() {
+        var ctrl = $componentController('passwordspagecomponent', { $scope: {} }, 'cS');
+        cS.setCookie("in", 'pepe', 1);
+        cookie = cS.getCookie("in");
+        expect(cookie).not.toBe('');
+        ctrl.logout();
+        cookie = cS.getCookie("in");
+        expect(cookie).toBe('');
     });
 })

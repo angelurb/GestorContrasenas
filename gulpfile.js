@@ -130,7 +130,8 @@ gulp.task('bower', function() {
 //TEST
 gulp.task('test', function(done) {
     return new Server({
-        configFile: 'C:/Users/ALUO/Desktop/GestorContrasenas/karma.conf.js',
+        configFile: __dirname + '/karma.conf.js',
+        autoWatch: false,
         singleRun: true
     }, done).start();
 });

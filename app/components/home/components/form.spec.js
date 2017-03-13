@@ -7,19 +7,19 @@ describe("component: relojcomponent", function() {
     }));
 
     it('should have two variables binded', function() {
-        var ctrl = $componentController('formcomponent', { $scope: {} }, { isCorrect: {}, onLogin: {} });
-        expect(ctrl.isCorrect).toBeDefined();
-    });
-    it('should have Date variables stored inbetween a range', function() {
-        var ctrl = $componentController('formcomponent', { $scope: {} });
-
-    });
-    it('should have Date variables stored inbetween a range', function() {
-        var ctrl = $componentController('formcomponent', { $scope: {} });
-
-    });
-    it('should have Date variables stored inbetween a range', function() {
-        var ctrl = $componentController('formcomponent', { $scope: {} });
-
+        var changes = {
+            isCorrect: {
+                currentValue: true
+            }
+        };
+        var onLoginSpy = jasmine.createSpy('onLogin');
+        var ctrl = $componentController('formcomponent', null, { onLogin: onLoginSpy });
+        expect(ctrl.correct).toBe(undefined);
+        ctrl.$onChanges(changes);
+        expect(ctrl.correct).toBe(true);
+        ctrl.username = 'angel';
+        ctrl.password = 'angel';
+        ctrl.login();
+        expect(onLoginSpy).toHaveBeenCalledWith({ user: ctrl.username, password: ctrl.password });
     });
 })

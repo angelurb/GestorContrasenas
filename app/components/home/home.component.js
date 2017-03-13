@@ -18,6 +18,7 @@
                     if (username === user.username && password === user.password) {
                         cookiesService.setCookie("in", username, 1);
                         $location.path('/passwordspage');
+                        break;
                     } else {
                         this.isCorrect = false;
                     }
